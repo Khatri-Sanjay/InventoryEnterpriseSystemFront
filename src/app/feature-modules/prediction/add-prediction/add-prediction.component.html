@@ -1,0 +1,182 @@
+<div class="container" style="height: 100vh">
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-outline-secondary" (click)="goBack()">
+        <i class="fa fa-backward" aria-hidden="true"></i>
+      </button>
+      <h3 class="text-center">Predict the price of product</h3>
+      <h6 class="fst-italic mt-3">
+        Fill the bellow form and submit it to predict the price of product according to below form!
+      </h6>
+      <hr />
+
+      <form [formGroup]="formDetails">
+        <div class="row">
+          <div class="col-6 mb-3">
+            <label class="form-label">Item Name</label>
+            <span
+              *ngIf="submitted || form['itemName'].touched ||
+              (form['itemName'].dirty && form['itemName'].invalid)"
+              class="info-msg text-danger px-2">
+            <small *ngIf="form['itemName'].errors && form['itemName'].errors?.['required']">
+              * This is the required field.
+            </small>
+            <small *ngIf="form['itemName'].errors && form['itemName'].errors?.['minlength']">
+              * Should have at least 3 characters.
+            </small>
+            <small *ngIf="form['itemName'].errors && form['itemName'].errors?.['pattern']">
+              * It's not an item name.
+            </small>
+          </span>
+            <input type="text" class="form-control" placeholder="Enter item name"
+                   formControlName="itemName"/>
+          </div>
+
+          <div class="col-6 mb-3">
+            <label class="form-label">Quantity of Raw materials</label>
+            <span *ngIf=" submitted || form['qtyOfRawMaterials'].touched ||
+              (form['qtyOfRawMaterials'].dirty && form['qtyOfRawMaterials'].invalid)"
+                  class="info-msg text-danger px-2">
+            <small *ngIf="form['qtyOfRawMaterials'].errors && form['qtyOfRawMaterials'].errors?.['required']">
+              * This is the required field.</small>
+            <small *ngIf="form['qtyOfRawMaterials'].errors && form['qtyOfRawMaterials'].errors?.['pattern']">
+               * Enter properer information</small>
+          </span>
+            <input type="number" class="form-control" placeholder="Enter Quantity of Raw materials"
+                   (keyup)="calculate('qtyOfRawMaterials','priceOfRawMaterials','totalPriceOfRawMaterials')"
+                   formControlName="qtyOfRawMaterials" required/>
+          </div>
+
+
+          <div class="col-6 mb-3">
+            <label class="form-label">Price of Raw materials
+              <i style="font-size: 13px; color: #fc5356">(*per kg/ ltr )</i>
+            </label>
+            <span *ngIf=" submitted || form['priceOfRawMaterials'].touched ||
+              (form['priceOfRawMaterials'].dirty && form['priceOfRawMaterials'].invalid)"
+                  class="info-msg text-danger px-2">
+            <small *ngIf="form['priceOfRawMaterials'].errors && form['priceOfRawMaterials'].errors?.['required']">
+              * This is the required field.</small>
+            <small *ngIf="form['priceOfRawMaterials'].errors && form['priceOfRawMaterials'].errors?.['pattern']">
+               * Enter properer information</small>
+          </span>
+            <input type="number" class="form-control" placeholder="Enter Price of Raw materials pre kg or ltr"
+                   (keyup)="calculate('qtyOfRawMaterials','priceOfRawMaterials','totalPriceOfRawMaterials')"
+                   formControlName="priceOfRawMaterials" required/>
+          </div>
+
+          <div class="col-6 mb-3">
+            <label class="form-label">Total price of raw materials  </label>
+            <input type="number" class="form-control" placeholder="Enter Price of Raw materials"
+                   (keyup)="calculate('qtyOfRawMaterials','priceOfRawMaterials','totalPriceOfRawMaterials')"
+                   formControlName="totalPriceOfRawMaterials" readonly/>
+          </div>
+
+          <div class="col-6 mb-3">
+            <label class="form-label">Labour Cost</label>
+            <span *ngIf=" submitted || form['labourCost'].touched ||
+              (form['labourCost'].dirty && form['labourCost'].invalid)"
+                  class="info-msg text-danger px-2">
+            <small *ngIf="form['labourCost'].errors && form['labourCost'].errors?.['required']">
+              * This is the required field.</small>
+            <small *ngIf="form['labourCost'].errors && form['labourCost'].errors?.['pattern']">
+              * Enter properer information</small>
+          </span>
+            <input type="text" class="form-control" placeholder="Enter labour cost"
+                   formControlName="labourCost"/>
+          </div>
+
+          <div class="col-6 mb-3">
+            <label class="form-label">Advertisement/ Marketing Cost</label>
+            <span *ngIf=" submitted || form['marketingCost'].touched ||
+              (form['marketingCost'].dirty && form['marketingCost'].invalid)"
+                  class="info-msg text-danger px-2">
+            <small *ngIf="form['marketingCost'].errors && form['marketingCost'].errors?.['required']">
+              * This is the required field.</small>
+            <small *ngIf="form['marketingCost'].errors && form['marketingCost'].errors?.['pattern']">
+               * Enter properer information</small>
+          </span>
+            <input type="text" class="form-control" placeholder="Enter Advertisement/ Marketing Cost"
+                   formControlName="marketingCost"/>
+          </div>
+
+          <div class="col-6 mb-3">
+            <label class="form-label">Packing Cost</label>
+            <span *ngIf=" submitted || form['packagingCost'].touched ||
+              (form['packagingCost'].dirty && form['packagingCost'].invalid)"
+                  class="info-msg text-danger px-2">
+            <small *ngIf="form['packagingCost'].errors && form['packagingCost'].errors?.['required']">
+              * This is the required field.</small>
+            <small *ngIf="form['packagingCost'].errors && form['packagingCost'].errors?.['pattern']">
+               * Enter properer information</small>
+          </span>
+            <input type="text" class="form-control" placeholder="Enter packing cost"
+                   formControlName="packagingCost"/>
+          </div>
+
+          <div class="col-6 mb-3">
+            <label class="form-label">Miscellaneous Cost</label>
+            <span *ngIf=" submitted || form['miscellaneousCost'].touched ||
+              (form['miscellaneousCost'].dirty && form['miscellaneousCost'].invalid)"
+                  class="info-msg text-danger px-2">
+            <small *ngIf="form['miscellaneousCost'].errors && form['miscellaneousCost'].errors?.['required']">
+              * This is the required field.</small>
+            <small *ngIf="form['miscellaneousCost'].errors && form['miscellaneousCost'].errors?.['pattern']">
+              * Enter properer information</small>
+          </span>
+            <input type="text" class="form-control" placeholder="Enter miscellaneous cost"
+                   formControlName="miscellaneousCost"/>
+          </div>
+
+          <div class="col-6 mb-3">
+            <label class="form-label">Shipping Cost</label>
+            <span *ngIf=" submitted || form['shippingCost'].touched ||
+              (form['shippingCost'].dirty && form['shippingCost'].invalid)"
+                  class="info-msg text-danger px-2">
+            <small *ngIf="form['shippingCost'].errors && form['shippingCost'].errors?.['required']">
+              * This is the required field.</small>
+            <small *ngIf="form['shippingCost'].errors && form['shippingCost'].errors?.['pattern']">
+               * Enter properer information</small>
+          </span>
+            <input type="text" class="form-control" placeholder="Enter shipping cost"
+                   formControlName="shippingCost"/>
+          </div>
+
+          <div class="col-6 mb-3">
+            <label class="form-label">Quantity of product</label>
+            <span *ngIf=" submitted || form['qtyOfProduct'].touched ||
+              (form['qtyOfProduct'].dirty && form['qtyOfProduct'].invalid)"
+                  class="info-msg text-danger px-2">
+            <small *ngIf="form['qtyOfProduct'].errors && form['qtyOfProduct'].errors?.['required']">
+              * This is the required field.</small>
+            <small *ngIf="form['qtyOfProduct'].errors && form['qtyOfProduct'].errors?.['pattern']">
+               * Enter properer information</small>
+          </span>
+            <input type="number" class="form-control" placeholder="Enter Quantity of Product in kg"
+                   formControlName="qtyOfProduct" required/>
+          </div>
+
+          <div class="col-6 mb-3">
+            <label class="form-label">Profit margin <i class="small">(in %)</i>
+              <i style="font-size: 13px; color: #fc5356">*Profit margin should be according to law </i>
+            </label>
+            <span *ngIf=" submitted || form['profitMargin'].touched ||
+              (form['profitMargin'].dirty && form['profitMargin'].invalid)"
+                  class="info-msg text-danger px-2">
+            <small *ngIf="form['profitMargin'].errors && form['profitMargin'].errors?.['required']">
+              * This is the required field.</small>
+            <small *ngIf="form['profitMargin'].errors && form['profitMargin'].errors?.['pattern']">
+              * Profit Margin must be in Number</small>
+          </span>
+            <input type="text" class="form-control" placeholder="Enter profit margin in %"
+                   formControlName="profitMargin"/>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-outline-info" (click)="onSubmit(formDetails.value)">
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

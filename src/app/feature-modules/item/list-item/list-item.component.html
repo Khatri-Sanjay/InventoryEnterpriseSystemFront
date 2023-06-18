@@ -1,0 +1,49 @@
+<div class="shadow-lg pt-3" style="height: 80vh">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h3>Item List</h3>
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-outline-info float-end me-5" [routerLink]="'/base/item-add'">
+    <i class="fa fa-plus pe-2"></i>Add Item
+  </button>
+
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th scope="col">S.N</th>
+      <th scope="col">Item Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Price per pics</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Total Price</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of items; let i = index;">
+      <th scope="row" >{{i+ 1}}</th>
+      <td>{{item?.itemName}}</td>
+      <td>{{item?.itemCategory}}</td>
+      <td>{{item?.itemPrice | currencyFormatter}}</td>
+      <td>{{item?.itemQuantity}}</td>
+      <td>{{parseInt(item?.itemPrice) * parseInt(item?.itemQuantity) | currencyFormatter}}</td>
+      <td>
+        <button type="button" class="btn btn-outline-success btn-sm me-2"
+                 data-toggle="tooltip" data-placement="top" title="Edit items details" (click)="onEdit(item?.id)">
+          <i class="fa fa-pencil"></i>
+        </button>
+        <button type="button" class="btn btn-outline-danger btn-sm me-2"
+                data-toggle="tooltip" data-placement="top" title="Delete items details" (click)="onDelete(item?.id)">
+          <i class="fa fa-trash"></i>
+        </button>
+        <button type="button" class="btn btn-outline-success btn-sm"
+                data-toggle="tooltip" data-placement="top" title="View items details" (click)="onView(item?.id)">
+          <i class="fa fa-eye"></i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

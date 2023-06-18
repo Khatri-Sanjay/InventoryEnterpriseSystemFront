@@ -1,0 +1,152 @@
+<div class="wrapper bg-white">
+  <div class="h2 text-center text-primary">Doctors Nepal</div>
+  <div class="h3 text-muted text-center pt-2">Enter your details</div>
+  <form class="pt-3" [formGroup]="signupForms">
+    <div class="form-group py-2">
+      <label class="h4 text-muted">First Name</label>
+      <div class="input-field">
+        <span class="text-primary fa fa-user p-2"></span>
+        <input type="text" class="form-control" formControlName="firstName" placeholder="Enter First Name" required/>
+      </div>
+      <span *ngIf="submitted || forms['firstName'].dirty ||
+            (forms['firstName'].touched && forms['firstName'].invalid)"
+        class="info-msg text-danger"
+      >
+          <small
+            *ngIf="forms['firstName'].errors && forms['firstName'].errors?.['required']"
+          >
+            First Name is required !
+          </small>
+        </span>
+    </div>
+
+    <div class="form-group py-2">
+      <label class="h4 text-muted">Last Name</label>
+      <div class="input-field">
+        <span class="text-primary fa fa-user p-2"></span>
+        <input type="text" class="form-control" formControlName="lastName" placeholder="Enter Last Name" required/>
+      </div>
+      <span *ngIf="submitted || forms['lastName'].dirty ||
+            (forms['lastName'].touched && forms['lastName'].invalid)"
+            class="info-msg text-danger"
+      >
+          <small
+            *ngIf="forms['lastName'].errors && forms['lastName'].errors?.['required']"
+          >
+            Last Name is required !
+          </small>
+        </span>
+    </div>
+
+    <!--  -->
+    <div class="form-group py-2">
+      <label class="h4 text-muted">Email</label>
+      <div class="input-field">
+        <span class="text-primary fa fa-envelope p-2"></span>
+        <!-- <i class="fa fa-envelope" aria-hidden="true"></i> -->
+        <input
+          type="text"
+          class="form-control"
+          formControlName="email"
+          placeholder="Enter Email"
+          required
+        />
+      </div>
+      <span
+        *ngIf="
+            submitted ||
+            forms['email'].dirty ||
+            (forms['email'].touched && forms['email'].invalid)
+          "
+        class="info-msg text-danger"
+      >
+          <small
+            *ngIf="forms['email'].errors &&
+                                  forms['email'].errors?.['required']"
+          >
+            Email is required !
+          </small>
+        </span>
+    </div>
+
+    <div class="form-group py-1 pb-2">
+      <label class="h4 text-muted">Password</label>
+      <div class="input-field">
+        <span class="text-primary fa fa-lock p-2"></span>
+        <input
+          [type]="fieldTextType ? 'text' : 'password'"
+          class="form-control"
+          formControlName="password"
+          placeholder="Enter Password"
+          required
+        />
+        <button class="btn bg-white text-muted" (click)="toggleFieldTextType()">
+          <span class="text-primary fa fa-eye-slash"></span>
+        </button>
+      </div>
+      <span
+        *ngIf="
+            submitted ||
+            forms['password'].dirty ||
+            (forms['password'].touched && forms['password'].invalid)
+          "
+        class="info-msg text-danger"
+      >
+          <small
+            *ngIf="forms['password'].errors &&
+                                      forms['password'].errors?.['required']"
+          >
+            Password is required !
+          </small>
+        </span>
+    </div>
+
+    <div class="form-group py-2">
+      <label class="h4 text-muted">Contact</label>
+      <div class="input-field">
+        <span class="text-primary fa fa-user p-2"></span>
+        <input type="text" class="form-control" formControlName="phoneNumber" placeholder="Enter phoneNumber " required/>
+      </div>
+      <span *ngIf="submitted || forms['phoneNumber'].dirty ||
+            (forms['phoneNumber'].touched && forms['phoneNumber'].invalid)"
+            class="info-msg text-danger"
+      >
+          <small
+            *ngIf="forms['phoneNumber'].errors && forms['phoneNumber'].errors?.['required']"
+          >
+            PhoneNumber is required !
+          </small>
+        </span>
+    </div>
+
+
+    <div class="form-group py-2">
+      <label class="h4 text-muted">Address</label>
+      <div class="input-field">
+        <span class="text-primary fa fa-user p-2"></span>
+        <input type="text" class="form-control" formControlName="address" placeholder="Enter address " required/>
+      </div>
+      <span *ngIf="submitted || forms['address'].dirty ||
+            (forms['address'].touched && forms['address'].invalid)"
+            class="info-msg text-danger"
+      >
+          <small
+            *ngIf="forms['address'].errors && forms['address'].errors?.['required']"
+          >
+            Address is required !
+          </small>
+        </span>
+    </div>
+
+    <div class="d-flex align-items-start"></div>
+    <button
+      class="btn btn-block text-center bg-primary my-3 w-100"
+      (click)="onSendData(signupForms.value)"
+    >
+      Create
+    </button>
+    <div class="text-center pt-3 text-muted">
+      Already have account? <a (click)="signIn()" class="navLink text-primary" >Sign in</a>
+    </div>
+  </form>
+</div>

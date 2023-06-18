@@ -1,0 +1,83 @@
+<div class="container" style="height: 100vh">
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-outline-secondary" (click)="goBack()">
+        <i class="fa fa-backward" aria-hidden="true"></i>
+      </button>
+      <h3 class="text-center">Predict the price of product</h3>
+      <h6 class="fst-italic mt-3">
+        Fill the bellow form and submit it to predict the price of product according to below form!
+      </h6>
+      <hr />
+
+      <form [formGroup]="formDetails">
+        <div class="row">
+          <div class="col-6 mb-3">
+            <label class="form-label">Raw Material Name</label>
+            <span
+              *ngIf="submitted || form['rawMaterialName'].touched ||
+              (form['rawMaterialName'].dirty && form['rawMaterialName'].invalid)"
+              class="info-msg text-danger px-2">
+            <small *ngIf="form['rawMaterialName'].errors && form['rawMaterialName'].errors?.['required']">
+              * This is the required field.
+            </small>
+            <small *ngIf="form['rawMaterialName'].errors && form['rawMaterialName'].errors?.['minlength']">
+              * Should have at least 3 characters.
+            </small>
+            <small *ngIf="form['rawMaterialName'].errors && form['rawMaterialName'].errors?.['pattern']">
+              * It's not an item name.
+            </small>
+          </span>
+            <input type="text" class="form-control" placeholder="Enter item name"
+                   formControlName="rawMaterialName"/>
+          </div>
+
+          <div class="col-6 mb-3">
+            <label class="form-label">Quantity of Raw materials</label>
+            <span *ngIf=" submitted || form['rawMaterialQuantity'].touched ||
+              (form['rawMaterialQuantity'].dirty && form['rawMaterialQuantity'].invalid)"
+                  class="info-msg text-danger px-2">
+            <small *ngIf="form['rawMaterialQuantity'].errors && form['rawMaterialQuantity'].errors?.['required']">
+              * This is the required field.</small>
+            <small *ngIf="form['rawMaterialQuantity'].errors && form['rawMaterialQuantity'].errors?.['pattern']">
+               * Enter properer information</small>
+          </span>
+            <input type="number" class="form-control" placeholder="Enter Quantity of Raw materials"
+                   (keyup)="calculate('rawMaterialQuantity','rawMaterialPrice','totalPriceOfRawMaterials')"
+                   formControlName="rawMaterialQuantity" required/>
+          </div>
+
+
+          <div class="col-6 mb-3">
+            <label class="form-label">Price of Raw materials
+              <i style="font-size: 13px; color: #fc5356">(*per kg/ ltr )</i>
+            </label>
+            <span *ngIf=" submitted || form['rawMaterialPrice'].touched ||
+              (form['rawMaterialPrice'].dirty && form['rawMaterialPrice'].invalid)"
+                  class="info-msg text-danger px-2">
+            <small *ngIf="form['rawMaterialPrice'].errors && form['rawMaterialPrice'].errors?.['required']">
+              * This is the required field.</small>
+            <small *ngIf="form['rawMaterialPrice'].errors && form['rawMaterialPrice'].errors?.['pattern']">
+               * Enter properer information</small>
+          </span>
+            <input type="number" class="form-control" placeholder="Enter Price of Raw materials pre kg or ltr"
+                   (keyup)="calculate('rawMaterialQuantity','rawMaterialPrice','totalPriceOfRawMaterials')"
+                   formControlName="rawMaterialPrice" required/>
+          </div>
+
+          <div class="col-6 mb-3">
+            <label class="form-label">Total price of raw materials  </label>
+            <input type="number" class="form-control" placeholder="Enter Price of Raw materials"
+                   (keyup)="calculate('rawMaterialQuantity','rawMaterialPrice','totalPriceOfRawMaterials')"
+                   formControlName="totalPriceOfRawMaterials" readonly/>
+          </div>
+
+        </div>
+
+        <button type="button" class="btn btn-outline-info" (click)="onSubmit(formDetails.value)">
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

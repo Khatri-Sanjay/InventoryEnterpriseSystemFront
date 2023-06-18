@@ -1,0 +1,93 @@
+<div class="container" style="height: 80vh">
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-outline-secondary" (click)="onGoBack()">
+        <i class="fa fa-backward" aria-hidden="true"></i>
+      </button>
+      <h3 class="text-center">Add Item</h3>
+      <h6 class="fst-italic mt-3">
+        Fill the bellow form and submit it to add item details!
+      </h6>
+      <hr />
+
+      <form [formGroup]="formDetails">
+        <div class="mb-3">
+          <label for="name" class="form-label">Item Name</label>
+          <span
+            *ngIf="submitted || form['itemName'].touched ||
+              (form['itemName'].dirty && form['itemName'].invalid)"
+              class="info-msg text-danger px-2">
+            <small *ngIf="form['itemName'].errors && form['itemName'].errors?.['required']">
+              * This is the required field.
+            </small>
+            <small *ngIf="form['itemName'].errors && form['itemName'].errors?.['minlength']">
+              * Should have at least 3 characters.
+            </small>
+            <small *ngIf="form['itemName'].errors && form['itemName'].errors?.['pattern']">
+              * It's not an item name.
+            </small>
+          </span>
+          <input type="text" class="form-control" id="name" placeholder="Enter item name"
+            formControlName="itemName"/>
+        </div>
+        <div class="mb-3">
+          <label for="itemCategory" class="form-label">Category</label>
+          <span *ngIf="submitted || form['itemCategory'].touched ||
+              (form['itemCategory'].dirty && form['itemCategory'].invalid)"
+            class="info-msg text-danger px-2">
+            <small *ngIf="form['itemCategory'].errors && form['itemCategory'].errors?.['required']">
+              * This is the required field.</small>
+            <small *ngIf="form['itemCategory'].errors && form['itemCategory'].errors?.['minlength']">
+              * Should have at least 3 characters.
+            </small>
+            <small *ngIf="form['itemCategory'].errors && form['itemCategory'].errors?.['pattern']">
+              * It's not a category.
+            </small>
+          </span>
+          <input type="text" class="form-control"
+            id="itemCategory" placeholder="Enter category of item"
+            formControlName="itemCategory"/>
+        </div>
+        <div class="mb-3">
+          <label for="itemPrice" class="form-label">Price</label>
+          <span *ngIf=" submitted || form['itemPrice'].touched ||
+              (form['itemPrice'].dirty && form['itemPrice'].invalid)"
+            class="info-msg text-danger px-2">
+            <small *ngIf="form['itemPrice'].errors && form['itemPrice'].errors?.['required']">
+              * This is the required field.</small>
+            <small *ngIf="form['itemPrice'].errors && form['itemPrice'].errors?.['minlength']">
+              * Price must have 2 digits</small>
+            <small *ngIf="form['itemPrice'].errors && form['itemPrice'].errors?.['pattern']">
+              * Item Price must be in Number</small>
+          </span>
+          <input type="text" class="form-control" id="itemPrice" placeholder="Enter price of item"
+            formControlName="itemPrice"/>
+        </div>
+        <div class="mb-3">
+          <label for="itemQuantity" class="form-label">Quantity</label>
+          <span *ngIf=" submitted || form['itemQuantity'].touched ||
+              (form['itemQuantity'].dirty && form['itemQuantity'].invalid)"
+            class="info-msg text-danger px-2">
+            <small *ngIf="form['itemQuantity'].errors && form['itemQuantity'].errors?.['required']">
+              * This is the required field.</small>
+            <small *ngIf="form['itemQuantity'].errors && form['itemQuantity'].errors?.['minlength']">
+              * Item Quantity must have 2 length</small>
+            <small *ngIf="form['itemQuantity'].errors && form['itemQuantity'].errors?.['pattern']">
+              * Item Quantity must be in Number</small>
+          </span>
+          <input type="text" class="form-control" id="itemQuantity" placeholder="Enter quantity of item"
+            formControlName="itemQuantity"
+          />
+        </div>
+
+        <button
+          type="button"
+          (click)="onSubmit(formDetails.value)"
+          class="btn btn-info"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

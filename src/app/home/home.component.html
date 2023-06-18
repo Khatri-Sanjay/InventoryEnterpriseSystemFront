@@ -1,0 +1,163 @@
+<nav
+  class="navbar navbar-expand-lg navbar-light shadow p-3 mb-5 bg-white rounded"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand logo ms-5" routerLink="dashboard">Inventory</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link mx-2">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2">Contact</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto d-none d-lg-inline-flex">
+        <li class="nav-item mx-2 me-5">
+            <a>Login</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid bg-overlay pt-2 pb-2">
+  <div class="row text-center py-5">
+    <h1 class="py-5 shadow bg-black rounded">Inventory Enterprise System</h1>
+    <br /><br />
+  </div>
+</div>
+
+<div class="container mt-5 bg-white" id="about">
+  <div class="row">
+    <div class="title text-center">
+      <h2>Our Teams</h2>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+    </div>
+    <div class="col-4 text-center px-5 pt-5" *ngFor="let teams of list">
+      <div class="card" style="width: 18rem">
+        <img
+          class="card-img-top"
+          src="{{ teams.image }}"
+          alt="Card image cap"
+        />
+        <div class="card-body teamDetails">
+          <div class="col-sm-12">
+            <h5 class="card-title">
+              <u>{{ teams.name }}</u>
+            </h5>
+            <p class="card-text">
+              {{ teams.desc }}
+            </p>
+            <a href="{{ teams.url }}" class="btn btn-primary">About {{teams.name}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<section id="contact">
+  <div class="container mt-5 contactContent">
+    <div class="row pt-5">
+      <div class="col-lg-6">
+        <div
+          style="
+            max-width: 100%;
+            overflow: hidden;
+            color: red;
+            width: 500px;
+            height: 500px;
+          "
+        >
+          <div
+            id="embedmap-canvas"
+            style="height: 100%; width: 100%; max-width: 100%"
+          >
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d8275.25129889215!2d85.46242697648998!3d27.64618083340094!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2snp!4v1671725890328!5m2!1sen!2snp"
+              width="600"
+              height="450"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+          <a
+            class="googlemaps-html"
+            href="https://www.embed-map.com"
+            id="get-data-forembedmap"
+          >https://www.embed-map.com</a
+          >
+          <style>
+            #embedmap-canvas img {
+              max-width: none !important;
+              background: none !important;
+              font-size: inherit;
+              font-weight: inherit;
+            }
+          </style>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <h2 class="h1-responsive font-weight-bold text-center">
+          Contact
+        </h2>
+        <hr>
+        <p class="text-center w-responsive mx-auto mb-5">
+          Do you have any questions? Please do not hesitate to contact me
+          directly.
+        </p>
+        <form>
+          <input
+            type="text"
+            class="form-control form-control-lg"
+            placeholder="Name"
+          />
+          <input type="email" class="form-control mt-3" placeholder="Email" />
+          <div class="mb-3 mt-3">
+            <textarea
+              class="form-control"
+              rows="5"
+              id="comment"
+              name="text"
+              placeholder="Message....."
+            ></textarea>
+          </div>
+        </form>
+        <button type="button" class="btn btn-outline-info mt-3">Send</button>
+      </div>
+    </div>
+  </div>
+</section>
+<hr />
+
+
+<footer class="bg-light shadow py-5 bg-white rounded">
+  <div class="container text-center">
+    <p class="font-monospace mb-0">
+      CopyRight &copy; Inventory Enterprise System | Sanjay Khatri | All rights reserved.
+    </p>
+  </div>
+</footer>
+
+
+

@@ -1,0 +1,69 @@
+<div class="shadow-lg pt-3" style="height: 80vh">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h3>Prediction List</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <button type="button" class="btn btn-outline-info float-end me-5" title="Press to predict more product price"
+              [routerLink]="'/base/prediction-add'">
+        <i class="fa fa-plus pe-2"></i>More Prediction
+      </button>
+    </div>
+  </div>
+
+  <table class="table table-hover table-responsive-sm table-sm mt-5">
+    <thead>
+    <tr>
+      <th scope="col">S.N</th>
+      <th scope="col">Item Name</th>
+      <th scope="col">Quantity of Raw Materials</th>
+      <th scope="col">Price of Raw materials</th>
+      <th scope="col">Total Price of Raw materials</th>
+<!--      <th scope="col">Labour Cost</th>-->
+<!--      <th scope="col">Advertisement / Marketing Cost</th>-->
+<!--      <th scope="col">Shipping Cost</th>-->
+<!--      <th scope="col">Packing Cost</th>-->
+<!--      <th scope="col">Miscellaneous Cost</th>-->
+      <th scope="col">Quantity of product</th>
+      <th scope="col">Profit margin (in %)</th>
+      <th scope="col">Prediction Price</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let list of list;let i = index;">
+      <th scope="row" >{{i + 1}}</th>
+      <td>{{list?.itemName}}</td>
+      <td>{{list?.qtyOfRawMaterials}}</td>
+      <td>{{list?.priceOfRawMaterials}}</td>
+      <td>{{list?.qtyOfRawMaterials * list?.priceOfRawMaterials}}</td>
+<!--      <td>{{list?.labourCost}}</td>-->
+<!--      <td>{{list?.marketingCost}}</td>-->
+<!--      <td>{{list?.shippingCost}}</td>-->
+<!--      <td>{{list?.packagingCost}}</td>-->
+<!--      <td>{{list?.miscellaneousCost}}</td>-->
+      <td>{{list?.qtyOfProduct}}</td>
+      <td>{{list?.profitMargin}} %</td>
+      <td>{{(((list?.priceOfRawMaterials) + (list?.labourCost) + (list?.marketingCost) + (list?.shippingCost) + (list?.packagingCost)
+      + (list?.miscellaneousCost) + (list?.profitMargin/100)) / list?.qtyOfRawMaterials ) | currency:'Rs. '}}</td>
+      <td>
+        <button type="button" class="btn btn-outline-success btn-sm me-2"
+                data-toggle="tooltip" data-placement="top" title="Edit prediction details" (click)="onEdit(list.id)">
+          <i class="fa fa-pencil"></i>
+        </button>
+        <button type="button" class="btn btn-outline-danger btn-sm me-2"
+                data-toggle="tooltip" data-placement="top" title="Delete prediction details" (click)="onDelete(list.id)">
+          <i class="fa fa-trash"></i>
+        </button>
+        <button type="button" class="btn btn-outline-success btn-sm"
+                data-toggle="tooltip" data-placement="top" title="View prediction details" (click)="onView(list.id)">
+          <i class="fa fa-eye"></i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

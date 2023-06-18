@@ -1,0 +1,13 @@
+<div class="header-box px-2 d-flex justify-content-between border border-top-1 border-dark border-bottom-0 border-end-0">
+  <h1 class="fs-4 my-4 mx-4 shadow">
+    <h1 class="text-black rounded  me-2">Inventory</h1>
+  </h1>
+</div>
+
+<ul class="list-unstyled rounded">
+  <li *ngFor="let navItem of list" routerLinkActive="active" [routerLink]="navItem?.link" class="py-2 border shadow rounded">
+    <a href="javascript:void(0);" class="text-decoration-none px-4 py-2 d-block">
+      <i class="{{ navItem.icon }} ps-3 pe-2"></i> {{navItem?.title}}
+    </a>
+  </li>
+</ul>

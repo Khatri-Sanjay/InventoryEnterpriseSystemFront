@@ -1,0 +1,82 @@
+
+<section class="py-5">
+  <div class="container">
+    <button class="btn btn-outline-secondary" (click)="onGoback()">
+      <i class="fa fa-backward" aria-hidden="true"></i>
+    </button>
+    <h3 class="text-center">{{predictionDetails?.itemName | uppercase}}</h3>
+    <div class="row gx-5 mt-5">
+      <aside class="col-lg-6">
+        <div class="border rounded-4 mb-3 d-flex justify-content-center">
+          <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image">
+            <img style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="assets/images/pred1.jpg" />
+          </a>
+        </div>
+      </aside>
+      <main class="col-lg-6">
+        <div class="ps-lg-3">
+          <h4 class="title text-dark">
+            {{predictionDetails?.itemName | uppercase}} <br />
+            <i style="font-size: 15px;" class="float-end mt-2 text-muted">Details of the prediction you have done {{predictionDetails?.itemName | titlecase}}</i>
+          </h4>
+
+          <div class="mb-3 mt-5">
+            <span class="h5">Rs {{(((predictionDetails?.priceOfRawMaterials) + (predictionDetails?.labourCost) + (predictionDetails?.marketingCost) + (predictionDetails?.shippingCost) + (predictionDetails?.packagingCost)
+              + (predictionDetails?.miscellaneousCost) + (predictionDetails?.profitMargin/100)) / predictionDetails?.qtyOfRawMaterials ) | currencyFormatter}}</span>
+            <span class="text-muted">/per box</span>
+          </div>
+
+          <p style="text-align: justify">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+
+          <p style="text-align: justify">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.
+          </p>
+          <hr />
+        </div>
+
+      </main>
+    </div>
+    <div class="row">
+      <h5 class="text-center mb-3" style="font-weight: bold"><i>Details of prediction</i></h5>
+      <dt class="col-3">Item name</dt>
+      <dd class="col-3">{{predictionDetails?.itemName}}</dd>
+
+      <dt class="col-3">Quantity of product</dt>
+      <dd class="col-3">{{predictionDetails?.qtyOfRawMaterials}}</dd>
+
+      <dt class="col-3">Price of Raw Materials</dt>
+      <dd class="col-3">{{predictionDetails?.priceOfRawMaterials}}</dd>
+
+      <dt class="col-3">Labour Cost</dt>
+      <dd class="col-3">{{predictionDetails?.labourCost}}</dd>
+
+      <dt class="col-3">marketing Cost</dt>
+      <dd class="col-3">{{predictionDetails?.marketingCost}}</dd>
+
+      <dt class="col-3">Shipping Cost</dt>
+      <dd class="col-3">{{predictionDetails?.shippingCost}}</dd>
+
+      <dt class="col-3">Packing Cost</dt>
+      <dd class="col-3">{{predictionDetails?.packagingCost}}</dd>
+
+      <dt class="col-3">Miscellaneous Cost</dt>
+      <dd class="col-3">{{predictionDetails?.miscellaneousCost}}</dd>
+
+      <dt class="col-3">Profit margin</dt>
+      <dd class="col-3">{{predictionDetails?.profitMargin}}</dd>
+
+      <dt class="col-3">Prediction price</dt>
+      <dd class="col-3">{{(((predictionDetails?.priceOfRawMaterials) + (predictionDetails?.labourCost) + (predictionDetails?.marketingCost) + (predictionDetails?.shippingCost) + (predictionDetails?.packagingCost)
+        + (predictionDetails?.miscellaneousCost) + (predictionDetails?.profitMargin/100)) / predictionDetails?.qtyOfRawMaterials )}} /per pics</dd>
+    </div>
+
+  </div>
+
+</section>
