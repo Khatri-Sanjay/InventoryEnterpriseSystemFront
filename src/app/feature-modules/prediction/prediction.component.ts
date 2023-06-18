@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {PredictionService} from "../service/prediction.service";
 import {Prediction} from "../model/prediction.model";
 import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-prediction',
@@ -15,7 +16,8 @@ export class PredictionComponent implements OnInit {
 
   constructor(
     private predictionService: PredictionService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -36,9 +38,11 @@ export class PredictionComponent implements OnInit {
     this.predictionService.onDeletePredictionById(id).subscribe({
       next: (response: any) => {
         this.getPrediction();
+        this.toastr.success('Delete Successfully', 'Success');
         console.log('Delete successfully');
       },
       error: (error: any) => {
+        this.toastr.error('Unable to delete', 'Error');
         console.log('Unable to Delete successfully');
       }
     })

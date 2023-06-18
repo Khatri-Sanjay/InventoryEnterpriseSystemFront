@@ -5,6 +5,7 @@ import {Location} from "@angular/common";
 import {Item} from "../../model/item.model";
 import {Prediction} from "../../model/prediction.model";
 import {PredictionService} from "../../service/prediction.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-add-prediction',
@@ -21,7 +22,8 @@ export class AddPredictionComponent implements OnInit {
     private formBuilder: FormBuilder,
     private location: Location,
     private router: Router,
-    private predictionService: PredictionService
+    private predictionService: PredictionService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -79,6 +81,7 @@ export class AddPredictionComponent implements OnInit {
     this.predictionService.onAddPrediction(prediction).subscribe(
       (response: any) => {
         console.log('data inserted succesfully');
+        this.toastr.success('Prediction Done Successfully', 'Success!');
         this.router.navigate(['/base/prediction-view', response?.id]);
       },
       (error: any) => {

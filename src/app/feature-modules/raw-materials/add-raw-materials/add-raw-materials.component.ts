@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {PredictionService} from "../../service/prediction.service";
 import {RawMaterials} from "../../model/raw-materials.model";
 import {RawMaterialsService} from "../../service/raw-materials.service";
+import {ToastrModule, ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-add-raw-materials',
@@ -22,7 +23,8 @@ export class AddRawMaterialsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private location: Location,
     private router: Router,
-    private rawMaterialService: RawMaterialsService
+    private rawMaterialService: RawMaterialsService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -65,6 +67,7 @@ export class AddRawMaterialsComponent implements OnInit {
     this.rawMaterialService.onAddRawMaterials(rawMaterials).subscribe(
       (response: any) => {
         console.log('data inserted succesfully');
+        this.toastr.success('Raw Materials Add Successfully', 'Success');
         this.router.navigate(['/base/view-rawMaterials', response?.id]);
       },
       (error: any) => {

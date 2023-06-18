@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from "./home/home.component";
 import {HeaderComponent} from "./main/layouts/header/header.component";
 import {DashboardComponent} from "./main/layouts/dashboard/dashboard.component";
@@ -26,7 +26,7 @@ const routes: Routes = [
     path: '', redirectTo: 'home', pathMatch: 'full'
   },
   {
-    path: 'login', component:LoginComponent
+    path: 'login', component: LoginComponent
   },
   {
     path: 'home', component: HomeComponent
@@ -40,7 +40,12 @@ const routes: Routes = [
   {
     path: 'base', component: BaseLayoutComponent,
     children: [
-      {path: 'dashboard', component: DashboardComponent},
+      {
+        path: 'dashboard', component: DashboardComponent,
+        children: [{
+          path: 'item-list', component: ListItemComponent
+        }]
+      },
       {path: 'item-list', component: ListItemComponent},
       {path: 'item-add', component: AddItemComponent},
       {path: 'item-edit/:id', component: EditItemComponent},
@@ -65,4 +70,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

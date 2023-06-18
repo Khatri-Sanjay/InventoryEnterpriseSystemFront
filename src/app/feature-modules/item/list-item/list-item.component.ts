@@ -2,6 +2,7 @@ import {Component, OnInit, Output} from '@angular/core';
 import {Item} from "../../model/item.model";
 import {ItemService} from "../../service/item.service";
 import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-list-item',
@@ -14,7 +15,8 @@ export class ListItemComponent implements OnInit {
 
   constructor(
     private itemService: ItemService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -35,9 +37,11 @@ export class ListItemComponent implements OnInit {
     this.itemService.onDeleteItemsById(id).subscribe({
       next: (response: any) => {
         this.getItems();
+        this.toastr.success('Delete Successfully', 'Success');
         console.log('Delete successfully');
       },
       error: (error: any) => {
+        this.toastr.error('Unable to delete', 'Error');
         console.log('Unable to Delete successfully');
     }
     })

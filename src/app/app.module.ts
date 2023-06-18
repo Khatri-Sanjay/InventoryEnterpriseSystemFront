@@ -27,6 +27,8 @@ import { RawMaterialsComponent } from './feature-modules/raw-materials/raw-mater
 import { AddRawMaterialsComponent } from './feature-modules/raw-materials/add-raw-materials/add-raw-materials.component';
 import { EditRawMaterialComponent } from './feature-modules/raw-materials/edit-raw-material/edit-raw-material.component';
 import { ViewRawMaterialComponent } from './feature-modules/raw-materials/view-raw-material/view-raw-material.component';
+import {ToastNoAnimationModule, ToastrModule} from "ngx-toastr";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -60,9 +62,13 @@ import { ViewRawMaterialComponent } from './feature-modules/raw-materials/view-r
     HttpClientModule,
     ReactiveFormsModule,
     ChartjsComponent,
+    ToastrModule.forRoot(), // ToastrModule added
+
 
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

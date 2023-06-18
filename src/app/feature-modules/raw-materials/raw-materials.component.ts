@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {RawMaterialsService} from "../service/raw-materials.service";
 import {RawMaterials} from "../model/raw-materials.model";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-raw-materials',
@@ -14,7 +15,8 @@ export class RawMaterialsComponent implements OnInit {
 
   constructor(
     private rawMaterialsService: RawMaterialsService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -35,9 +37,11 @@ export class RawMaterialsComponent implements OnInit {
     this.rawMaterialsService.onDeleteRawMaterialsById(id).subscribe({
       next: (response: any) => {
         this.getPrediction();
+        this.toastr.success('Delete Successfully', 'Success');
         console.log('Delete successfully');
       },
       error: (error: any) => {
+        this.toastr.error('Unable to delete', 'Error');
         console.log('Unable to Delete successfully');
       }
     })
