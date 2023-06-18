@@ -1,11 +1,11 @@
 <div class="wrapper bg-white">
-  <div class="h2 text-center">Inventory</div>
-  <div class="h3 text-muted text-center pt-2">Enter your login details</div>
+  <div class="h2 text-primary text-center">Inventory Enterprise System</div>
+  <div class="h3 text-primary text-muted text-center pt-2">Enter your login details</div>
   <form class="pt-3" [formGroup]="loginForms">
     <div class="form-group py-2">
-      <label class="h4 text-muted">Email</label>
+      <label class="text-primary h4 text-muted">Email</label>
       <div class="input-field">
-        <span class="far fa-user p-2"></span>
+        <span class="text-primary far fa-user p-2"></span>
         <input
           type="text"
           class="form-control"
@@ -31,9 +31,9 @@
         </span>
     </div>
     <div class="form-group py-1 pb-2">
-      <label class="h4 text-muted">Password</label>
+      <label class="h4 text-primary  text-muted">Password</label>
       <div class="input-field">
-        <span class="fas fa-lock p-2"></span>
+        <span class="text-primary fas fa-lock p-2"></span>
         <input
           [type]="fieldTextType ? 'text' : 'password'"
           class="form-control"
@@ -62,26 +62,26 @@
           <small>{{ inValidMsg }}</small>
         </span>
     </div>
-    <div class="d-flex align-items-start">
-      <div class="remember">
-        <label class="option text-muted">
-          Remember me
-          <input type="radio" name="radio" />
-          <span class="checkmark"></span>
-        </label>
-      </div>
-      <div class="ml-auto">
-        <a (click)="forgotPassword()" id="forgot">Forgot Password?</a>
-      </div>
-    </div>
+<!--    <div class="d-flex align-items-start">-->
+<!--      <div class="remember">-->
+<!--        <label class="option text-muted">-->
+<!--          Remember me-->
+<!--          <input type="radio" name="radio" />-->
+<!--          <span class="checkmark"></span>-->
+<!--        </label>-->
+<!--      </div>-->
+<!--      <div class="ml-auto">-->
+<!--        <a (click)="forgotPassword()" id="forgot">Forgot Password?</a>-->
+<!--      </div>-->
+<!--    </div>-->
     <button
-      class="btn btn-block text-center my-3 w-100"
+      class="btn-primary btn btn-block text-center my-3 w-100"
       (click)="loginUser(loginForms.value)"
     >
       Log in
     </button>
-    <div class="text-center pt-3 text-muted">
-      Not a member? <a (click)="signUp()" class="navLink">Sign up</a>
+    <div class=" text-center pt-3 text-muted">
+      Not a member? <a (click)="signUp()" class="text-primary navLink">Sign up</a>
     </div>
   </form>
 </div>
